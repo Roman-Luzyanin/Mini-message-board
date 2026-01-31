@@ -1,0 +1,168 @@
+*, *::after, *::before { margin: 0; box-sizing: border-box; user-select: none;}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+a {
+    text-decoration: none;
+    color: gray;
+}
+
+ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style-type: none;
+    padding: 0;
+}
+
+.navbar {
+    width: 300px; 
+    margin: 20px 0;
+}
+
+.messageBoard,
+.form {
+    border: 1px solid black;
+    width: 500px;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px gray;
+}
+
+.form {
+    background-color: lightgoldenrodyellow;
+}
+
+.title,
+.formTitle {
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.formTitle {
+    color: gray;
+    font-weight: 400;
+}
+
+.author,
+.text,
+.submit {
+    font-size: 16px;
+    text-align: center;
+    display: block;
+    margin: auto;
+    border: 1px solid black;
+    border-radius: 5px;
+    outline: none;
+    padding: 5px;
+}
+
+.text {
+    width: 100%;
+    margin: 20px 0;
+}
+
+.submit {
+    width: 180px;   
+    background-color: rgb(213, 213, 141);
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.submit:hover {
+    background-color: rgb(234, 234, 145);
+}
+
+.message {
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.remove {
+    position: absolute;
+    top: 10%;
+    right: 5%;
+}
+
+.remove button {
+    width: 24px;
+    height: 24px;
+    background: no-repeat url(./remove.png) center / contain;
+    border: none;
+    cursor: pointer;
+}
+
+.message:nth-child(odd) {
+    background-color: rgb(226, 226, 175);
+}
+
+.message:nth-child(even) {
+    background-color: rgb(235, 235, 162);
+}
+
+.user {
+    margin-bottom: 10px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.date {
+    border-top: 1px solid #000;
+    margin-top: 5px;
+    padding-top: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.disable {
+    pointer-events: none;
+    text-decoration: none;
+    color: darkgoldenrod;
+    font-size: 24px;
+}
+
+.details {
+    margin: 100px auto;
+    width: 400px;
+    border: 1px solid black;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px black;
+}
+
+.detailsBtn {
+    width: 24px;
+    height: 24px;
+    background: no-repeat url(./menu.png) center / contain;
+}
+
+#editTextarea {
+    min-height: 23px;
+    height: 23px;
+    width: 210px;
+    resize: vertical;
+}
+
+.edit {
+    display: flex;
+    justify-content: space-between;
+}
+
+.editBtn {
+    margin-top: 3px;
+    height: 23px;
+}
+
+.navbar a:not(.disable):hover {
+    /* background: radial-gradient( gold, transparent 70%); */
+    color: black;
+}

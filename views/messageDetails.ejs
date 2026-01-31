@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <title>Document</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <div class="details">
+            
+            <p>Date: <%= messages[num].added[1] %></p>
+            <p>Time: <%= messages[num].added[0] %></p>
+            <p>Name: <%= messages[num].user %></p>
+
+            <div class="edit">
+                <form action="/edit_<%= num %>" method="post" style="display: none;" id="editForm">
+                    Text:
+                    <textarea name="message" id="editTextarea">
+                        <%= messages[num].text %>
+                    </textarea>
+                    <button type="submit">apply</button>
+                </form>
+
+                <p id="editText">Text: <%= messages[num].text %></p>   
+                
+                <button onclick="edit()" class="editBtn">edit</button>
+            </div>
+        </div>
+
+        <script>
+            function edit() {
+                const form = document.getElementById('editForm');
+                const text = document.getElementById('editText');
+                const btn = document.querySelector('.editBtn');
+
+                form.style.display =
+                    form.style.display === 'none' ? 'block' : 'none';
+
+                text.style.display =
+                    text.style.display === 'none' ? 'block' : 'none';
+
+                btn.textContent =
+                    btn.textContent === 'edit' ? 'cancel' : 'edit';
+            }
+        </script>
+    </body>
+</html>
