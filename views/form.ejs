@@ -7,9 +7,16 @@
         <%- include('navbar', {links}) %>
         <form method="post" action="/new" class="form">
             <h3 class="formTitle">New Message</h3>
-            <input class="author" name="author" placeholder="Author">
-            <textarea class="text" name="message" placeholder="Message"></textarea>
+            <input class="author" name="author" placeholder="Author" value="<%= author %>">
+            <textarea class="text" name="message" placeholder="Message"><%= message %></textarea>
             <button class="submit" type="submit">Submit</button>
         </form>
+        <% if (locals.errors) { %>
+            <ul>
+                <% errors.forEach(err => { %>
+                    <li style="color: red;"><%= err.msg %></li>
+                <% }) %>
+            </ul>
+        <% } %>
     </body>
 </html>

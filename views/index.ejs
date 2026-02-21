@@ -7,17 +7,17 @@
         <%- include('navbar', {links}) %>
         <div class="messageBoard">
             <p class="title">Mini Message Board</p>
-            <% messages.forEach((message, idx) => { %>
+            <% messages.forEach(message => { %>
                 <div class="message">     
-                    <form action="/delete_<%= idx %>" method="post" class="remove">
+                    <form action="/delete_<%= message.id %>" method="post" class="remove">
                         <button type="submit"></button>
                     </form>    
-                    <p class="user"><%= message.user %></p>
+                    <p class="user"><%= message.name %></p>
                     <p><%= message.text %></p>
                     <p class="date">
-                        <span><%= message.added[0] %></span>
-                        <a href="/message_<%= idx %>" class="detailsBtn"></a>
-                        <span><%= message.added[1] %></span>
+                        <span><%= message.time %></span>
+                        <a href="/message_<%= message.id %>" class="detailsBtn"></a>
+                        <span><%= message.date %></span>
                     </p>
                 </div>
             <% }) %>

@@ -6,20 +6,20 @@
     <body>
         <div class="details">
             
-            <p>Date: <%= messages[num].added[1] %></p>
-            <p>Time: <%= messages[num].added[0] %></p>
-            <p>Name: <%= messages[num].user %></p>
+            <p>Date: <%= message.date %></p>
+            <p>Time: <%= message.time %></p>
+            <p>Name: <%= message.name %></p>
 
             <div class="edit">
-                <form action="/edit_<%= num %>" method="post" style="display: none;" id="editForm">
+                <form action="/edit_<%= message.id %>" method="post" style="display: none;" id="editForm">
                     Text:
                     <textarea name="message" id="editTextarea">
-                        <%= messages[num].text %>
+                        <%= message.text %>
                     </textarea>
                     <button type="submit">apply</button>
                 </form>
 
-                <p id="editText">Text: <%= messages[num].text %></p>   
+                <p id="editText">Text: <%= message.text %></p>   
                 
                 <button onclick="edit()" class="editBtn">edit</button>
             </div>

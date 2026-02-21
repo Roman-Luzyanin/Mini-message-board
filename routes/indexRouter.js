@@ -1,61 +1,27 @@
 const { Router } = require('express');
+const controllers = require('../controllers/indexController');
+const { body } = require('express-validator');
+
+const validator = [
+    body('author').trim()
+    .notEmpty().withMessage('Username is required')
+    .isLength({ min: 3, max: 15 }).withMessage('Username must be 3 - 15 characters'),
+    body('message').trim()
+    .notEmpty().withMessage('Message cannot be empty')
+    .escape()
+];
 
 const indexRouter = Router();
+    
+indexRouter.get('/', controllers.renderMessages);
 
-function showTime () {
-    const data = new Date();
-    const timePattern = new Intl.DateTimeFormat('en-US', {
-                            minute: 'numeric',
-                            hour: 'numeric',
-                            day: '2-digit',
-                            month: '2-digit',
-                            year: 'numeric',
-                        })
-    const time = timePattern.format(data).slice(12);
-    const date = timePattern.format(data).slice(0, 10);
+indexRouter.get('/new', controllers.newMessage);
+indexRouter.post('/new', validator, controllers.addNewMessage);
 
-    return [time, date];
-}
+indexRouter.get('/message_:number', controllers.renderDetais);
 
-let messages = [
-    {
-        text: "Hi there!",
-        user: "Amando",
-        added:  showTime(),
-    },
-    {
-        text: "Hello! How are you?",
-        user: "Charles",
-        added: showTime(),
-    }
-];
+indexRouter.post('/edit_:number', controllers.updateMessage);
 
-const links = [
-    { href: "/", text: "Messages" },
-    { href: "/new", text: "New message" },
-];
-
-     
-indexRouter.get('/', (req, res) => res.render('index', { links, messages }))
-indexRouter.get('/message_:number', (req, res) =>{
-    const num = parseInt(req.params.number);
-    res.render('messageDetails', { messages, num });
-})
-indexRouter.post('/new', (req, res) => {
-    messages.push({text: req.body.message, user: req.body.author, added: showTime()});
-    res.redirect('/');
-})
-
-indexRouter.post('/edit_:number', (req, res) => {
-    const num = parseInt(req.params.number);
-    messages = messages.map((message, idx) => idx === num ? { ...message, text: req.body.message} : message);
-    res.redirect('/');
-})
-
-indexRouter.post('/delete_:number', (req, res) => {
-    const num = parseInt(req.params.number);
-    messages = messages.filter((_, idx) => idx !== num);
-    res.redirect('/');
-})
+indexRouter.post('/delete_:number', controllers.deleteMessage);
 
 module.exports = indexRouter;
